@@ -1,5 +1,6 @@
 package allowance_manager.allowance_manager.Service;
 
+import allowance_manager.allowance_manager.Service.interfaces.MemberService;
 import allowance_manager.allowance_manager.domain.Member;
 import allowance_manager.allowance_manager.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,16 @@ public class MemberServiceImpl implements MemberService {
         if (findMembers.isPresent()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
+    }
+
+//    @Override
+//    public void update(Member member) {
+//        memberRepository.
+//    }
+
+    @Override
+    public void withdrwal(Member member) {
+        memberRepository.deleteById(member.getId());
     }
 
     @Override
