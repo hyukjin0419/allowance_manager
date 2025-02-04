@@ -14,8 +14,8 @@ public interface MonthlyBudgetService {
     public void updateMonthYear(Long monthlyBudgetId, YearMonth yearMonth);
     public void updateTotalBudget(Long monthlyBudgetId, Long totalBudget);
     public void updateRemainingBudget(Long monthlyBudgetId, Long RemainingBudget);
-    public List<MonthlyBudget> findAllMonthlyBudgetByChildId(Long childId);
-    public List<MonthlyBudget> findAllMonthlyBudgetByChildIdAndYearMonth(Long childId, YearMonth yearMonth);
+    public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildId(Long MemberId, Long childId);
+    public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildIdAndYearMonth(Long MemberId, Long childId, YearMonth yearMonth);
     public List<MonthlyBudget> findAllMonthlyBudget();
     public Optional<MonthlyBudget> findOneMonthlyBudget(Long monthlyBudgetId);
 }

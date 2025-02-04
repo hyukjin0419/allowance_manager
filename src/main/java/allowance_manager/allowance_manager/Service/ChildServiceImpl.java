@@ -47,6 +47,11 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
+    public List<Child> findChildrenByParentId(Long memberId) {
+        return childRepository.findByParent_Id(memberId);
+    }
+
+    @Override
     public List<Child> findChildren() {
         return childRepository.findAll();
     }

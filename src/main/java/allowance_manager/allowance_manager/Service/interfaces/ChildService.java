@@ -10,6 +10,7 @@ public interface ChildService {
     public Long join(Child child);
     public void withdraw(Long childId);
     public void update(Long childId, String childName);
+    public List<Child> findChildrenByParentId(Long memberId);
     public List<Child> findChildren();
     public Optional<Child> findChild(Long childId);
     public void changePlannedBudget(Long childId, Long newBudget);

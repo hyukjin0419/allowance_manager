@@ -3,6 +3,7 @@ package allowance_manager.allowance_manager.Service;
 import allowance_manager.allowance_manager.Service.interfaces.MonthlyBudgetService;
 import allowance_manager.allowance_manager.domain.MonthlyBudget;
 import allowance_manager.allowance_manager.repository.ChildRepository;
+import allowance_manager.allowance_manager.repository.MemberRepository;
 import allowance_manager.allowance_manager.repository.MonthlyBudgetRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,10 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
-    private MonthlyBudgetRepository monthlyBudgetRepository;
+    private MemberRepository memberRepository;
     private ChildRepository childRepository;
+    private MonthlyBudgetRepository monthlyBudgetRepository;
+
 
     @Override
     public Long add(MonthlyBudget monthlyBudget) {
@@ -66,13 +69,14 @@ public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
     }
 
     @Override
-    public List<MonthlyBudget> findAllMonthlyBudgetByChildId(Long childId) {
-        return monthlyBudgetRepository.findByChildId(childId);
+    public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildId(Long memberId, Long childId) {
+
+        return monthlyBudgetRepository.findByChild_Parent_IdAndChild_Id(memberId, childId);
     }
 
     @Override
-    public List<MonthlyBudget> findAllMonthlyBudgetByChildIdAndYearMonth(Long childId, YearMonth yearMonth) {
-        return monthlyBudgetRepository.findByChildIdAndMonthYear(childId, yearMonth);
+    public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildIdAndYearMonth(Long memberId, Long childId, YearMonth yearMonth) {
+        return monthlyBudgetRepository.findByChild_Parent_IdAndChild_IdAndMonthYear(memberId, childId, yearMonth);
     }
 
     @Override

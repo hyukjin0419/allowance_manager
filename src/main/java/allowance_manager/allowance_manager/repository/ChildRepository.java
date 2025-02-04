@@ -7,8 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface ChildRepository extends JpaRepository<Child, Long> {
+    List<Child> findByParent_Id(Long memberId);
 
     @Transactional
     @Modifying
