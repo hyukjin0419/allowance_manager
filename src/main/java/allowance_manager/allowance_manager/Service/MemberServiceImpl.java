@@ -37,17 +37,17 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public void withdraw(Long id) {
-        memberRepository.deleteById(id);
+    public void withdraw(Long memberId) {
+        memberRepository.deleteById(memberId);
     }
 
     @Override
     @Transactional
-    public void update(Long id, String name) {
-        Member member = memberRepository.findById(id)
+    public void update(Long memberId, String memberName) {
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new EntityNotFoundException("Member not found"));
 
-        member.setName(name);
+        member.setName(memberName);
     }
 
 
