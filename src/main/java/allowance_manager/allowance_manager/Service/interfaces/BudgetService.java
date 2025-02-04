@@ -33,6 +33,10 @@ public interface BudgetService {
 
     public List<Budget> getBudgetsByMemberChildAndMonthlyBudget(Long memberId, Long childId, Long monthlyBudgetId);
 
+    public List<Budget> getBudgetsByMemberChildAndCategory(Long memberId, Long childId, Long categoryId);
+
+    public List<Budget> getBudgetsByMemberChildMonthlyBudgetAndCategory(Long memberId, Long childId, Long monthlyBudgetId, Long categoryId);
+
     //기본 전체 조회
     public List<Budget> findAllBudgets();
     public Optional<Budget> findOneBudget(Long budgetId);
