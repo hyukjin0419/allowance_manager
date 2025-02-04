@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface MemberService {
     public Long join(Member member);
+    public boolean logIn(String name, String password);
     public void withdraw(Long memberId);
     public void update(Long memberId, String memberName);
     public List<Member> findMembers();

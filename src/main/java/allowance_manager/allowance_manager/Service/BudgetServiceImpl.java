@@ -80,27 +80,27 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public List<Budget> getBudgetsByMember(Long memberId) {
-        return budgetRepository.findByChild_Parent_Id(memberId);
+        return budgetRepository.findByMonthlyBudget_Child_Parent_Id(memberId);
     }
 
     @Override
     public List<Budget> getBudgetsByMemberAndChild(Long memberId, Long childId) {
-        return budgetRepository.findByChild_Parent_IdAndChild_Id(memberId, childId);
+        return budgetRepository.findByMonthlyBudget_Child_Parent_IdAndMonthlyBudget_Child_Id(memberId, childId);
     }
 
     @Override
     public List<Budget> getBudgetsByMemberChildAndMonthlyBudget(Long memberId, Long childId, Long monthlyBudgetId) {
-        return budgetRepository.findByChild_Parent_IdAndChild_IdAndMonthlyBudget_Id(memberId, childId, monthlyBudgetId);
+        return budgetRepository.findByMonthlyBudget_Child_Parent_IdAndMonthlyBudget_Child_IdAndMonthlyBudget_Id(memberId, childId, monthlyBudgetId);
     }
 
     @Override
     public List<Budget> getBudgetsByMemberChildAndCategory(Long memberId, Long childId, Long categoryId) {
-        return budgetRepository.findByChild_Parent_IdAndChild_IdAndCategory_Id(memberId, childId, categoryId);
+        return budgetRepository.findByMonthlyBudget_Child_Parent_IdAndMonthlyBudget_Child_IdAndCategory_Id(memberId, childId, categoryId);
     }
 
     @Override
     public List<Budget> getBudgetsByMemberChildMonthlyBudgetAndCategory(Long memberId, Long childId, Long monthlyBudgetId, Long categoryId) {
-        return budgetRepository.findByChild_Parent_IdAndChild_IdAndMonthlyBudget_IdAndCategory_Id(memberId, childId, monthlyBudgetId, categoryId);
+        return budgetRepository.findByMonthlyBudget_Child_Parent_IdAndMonthlyBudget_Child_IdAndMonthlyBudget_IdAndCategory_Id(memberId, childId, monthlyBudgetId, categoryId);
     }
 
     @Override
