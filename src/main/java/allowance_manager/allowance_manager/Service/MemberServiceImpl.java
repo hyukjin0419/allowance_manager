@@ -1,8 +1,10 @@
 package allowance_manager.allowance_manager.Service;
 
 import allowance_manager.allowance_manager.Service.interfaces.MemberService;
+import allowance_manager.allowance_manager.domain.Child;
 import allowance_manager.allowance_manager.domain.Member;
 import allowance_manager.allowance_manager.repository.MemberRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,15 +35,21 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
-//    @Override
-//    public void update(Member member) {
-//        memberRepository.
-//    }
+    @Override
+    @Transactional
+    public void withdraw(Long id) {
+        memberRepository.deleteById(id);
+    }
 
     @Override
-    public void withdrwal(Member member) {
-        memberRepository.deleteById(member.getId());
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Member not found"));
+
+        member.setName(name);
     }
+
 
     @Override
     public List<Member> findMembers() {
