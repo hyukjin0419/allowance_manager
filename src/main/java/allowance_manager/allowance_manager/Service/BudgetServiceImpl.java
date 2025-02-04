@@ -2,7 +2,6 @@ package allowance_manager.allowance_manager.Service;
 
 import allowance_manager.allowance_manager.Service.interfaces.BudgetService;
 import allowance_manager.allowance_manager.domain.Budget;
-import allowance_manager.allowance_manager.domain.Member;
 import allowance_manager.allowance_manager.domain.MonthlyBudget;
 import allowance_manager.allowance_manager.repository.BudgetRepository;
 import allowance_manager.allowance_manager.repository.ChildRepository;
