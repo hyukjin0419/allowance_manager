@@ -69,12 +69,14 @@ public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildId(Long memberId, Long childId) {
 
         return monthlyBudgetRepository.findByChild_Parent_IdAndChild_Id(memberId, childId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildIdAndYearMonth(Long memberId, Long childId, YearMonth yearMonth) {
         return monthlyBudgetRepository.findByChild_Parent_IdAndChild_IdAndMonthYear(memberId, childId, yearMonth);
     }
