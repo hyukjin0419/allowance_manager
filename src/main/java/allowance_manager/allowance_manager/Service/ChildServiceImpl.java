@@ -48,12 +48,12 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public List<Child> findChildren() {
-        return List.of();
+        return childRepository.findAll();
     }
 
     @Override
     public Optional<Child> findChild(Long childId) {
-        return Optional.empty();
+        return childRepository.findById(childId);
     }
 
 
