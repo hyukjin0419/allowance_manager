@@ -33,11 +33,12 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     @Transactional
-    public void update(Long childId, String childName) {
+    public void update(Long childId, String childName, Long plannedBudget) {
         Child child = childRepository.findById(childId)
                 .orElseThrow(() -> new EntityNotFoundException("Child Not Found"));
 
         child.setName(childName);
+        child.setPlannedBudget(plannedBudget);
     }
 
     @Override

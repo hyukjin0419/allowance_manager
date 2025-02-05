@@ -17,33 +17,28 @@
 <body class="text-center">
 
 <main class="form-signin w-100 m-auto">
-    <form id="authForm" method="post" action="/child/createChildForm">
-        <h1 class="h3 mb-3 fw-normal">Please register your children</h1>
+    <form id="authForm" method="post" action="/child/updateChildForm" th:object="${child}">
+        <!--        여기 이름 넣고 수정 하자-->
+        <h1 class="h3 mb-3 fw-normal">Please register your children <span th:text="${child.name}"></span></h1>
 
         <div style="color: red;">
             <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
         </div>
 
-
-
+        <input type="hidden" name="id" th:value="${id}">
         <div class="form-floating">
-            <input type="text" class="form-control" id="name" name="name"  placeholder="Enter Child's Name" >
+            <input type="text" class="form-control" id="name" name="name" th:value="*{name}" required>
             <label for="name">child_name</label>
         </div>
         <div class="form-floating">
-            <input type="number" class="form-control" id="plannedBudget" name="plannedBudget" placeholder="Enter Planned Budget">
+            <input type="number" class="form-control" id="plannedBudget" name="plannedBudget" th:value="*{plannedBudget}" required>
             <label for="plannedBudget">total planned budget</label>
         </div>
 
-
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Create Child</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Update Child</button>
         <div class="padding"></div>
-
     </form>
 </main>
-
-
 
 </body>
 </html>

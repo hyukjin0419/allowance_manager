@@ -8,6 +8,9 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ChildForm {
+
+    private  Long id;
+
     @NotEmpty(message =  "자녀의 이름을 입력하세요.")
     private String name;
 

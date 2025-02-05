@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ChildService {
     public Long join(Child child);
     public void withdraw(Long childId);
-    public void update(Long childId, String childName);
+    public void update(Long childId, String childName, Long plannedBudget);
     public List<Child> findChildrenByParentId(Long memberId);
     public List<Child> findChildrenByParentName(String memberName);
     public List<Child> findChildren();
