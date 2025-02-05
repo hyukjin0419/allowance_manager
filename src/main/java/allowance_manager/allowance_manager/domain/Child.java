@@ -34,5 +34,5 @@ public class Child {
         return child;
     }
 
-    //==비지니스 로지==// 미정
+    //==비지니스 로직==// 미정
 }
