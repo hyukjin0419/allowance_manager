@@ -13,6 +13,8 @@ import java.util.List;
 public interface ChildRepository extends JpaRepository<Child, Long> {
     List<Child> findByParent_Id(Long memberId);
 
+    List<Child> findByParent_Name(String memberName);
+
     @Transactional
     @Modifying
     @Query("UPDATE Child c SET c.plannedBudget = :plannedBudget WHERE c.id = :childId")

@@ -28,9 +28,12 @@ public class Child {
     //==연관 관계 메소드==// 없어도 됨. 단방향 관계이기 때
 
     //==생성 메서드==//
-    public static Child createChild(Member member) {
+    public static Child createChild(Member member, String name, Long plannedBudget) {
         Child child = new Child();
         child.setParent(member);
+        child.setName(name);
+        child.setPlannedBudget(plannedBudget);
+
         return child;
     }
 

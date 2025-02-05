@@ -11,6 +11,7 @@ public interface ChildService {
     public void withdraw(Long childId);
     public void update(Long childId, String childName);
     public List<Child> findChildrenByParentId(Long memberId);
+    public List<Child> findChildrenByParentName(String memberName);
     public List<Child> findChildren();
     public Optional<Child> findChild(Long childId);
     public void changePlannedBudget(Long childId, Long newBudget);

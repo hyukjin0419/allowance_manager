@@ -70,4 +70,9 @@ public class MemberServiceImpl implements MemberService {
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    @Override
+    public Optional<Member> findByName(String memberName) {
+        return memberRepository.findByName(memberName);
+    }
 }

@@ -12,6 +12,8 @@ public interface MemberService {
     public void update(Long memberId, String memberName);
     public List<Member> findMembers();
     public Optional<Member> findOne(Long memberId);
+
+    public Optional<Member> findByName(String memberName);
 }
 
 
