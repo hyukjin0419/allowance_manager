@@ -25,6 +25,8 @@ public class Child {
 
     private Long plannedBudget;
 
+    private Long remainingBudget;
+
     //==연관 관계 메소드==// 없어도 됨. 단방향 관계이기 때
 
     //==생성 메서드==//
@@ -33,9 +35,11 @@ public class Child {
         child.setParent(member);
         child.setName(name);
         child.setPlannedBudget(plannedBudget);
+        child.setRemainingBudget(plannedBudget);
 
         return child;
     }
 
-    //==비지니스 로직==// 미정
+    //==비지니스 로직==//
+    //calculate remainigbudget
 }

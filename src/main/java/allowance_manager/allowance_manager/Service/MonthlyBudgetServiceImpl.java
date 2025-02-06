@@ -18,9 +18,9 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
-    private MemberRepository memberRepository;
-    private ChildRepository childRepository;
-    private MonthlyBudgetRepository monthlyBudgetRepository;
+    private final MemberRepository memberRepository;
+    private final ChildRepository childRepository;
+    private final MonthlyBudgetRepository monthlyBudgetRepository;
 
 
     @Override
@@ -49,7 +49,7 @@ public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
         MonthlyBudget monthlyBudget = monthlyBudgetRepository.findById(monthlyBudgetId)
                 .orElseThrow(() -> new EntityNotFoundException("Monthly Budget Not Found"));
 
-        monthlyBudget.setMonthYear(yearMonth);
+        monthlyBudget.setYearMonth(yearMonth);
     }
 
     @Override
@@ -69,17 +69,22 @@ public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
     }
 
     @Override
+    public List<MonthlyBudget> findAllMonthlyBudgetByChildId(Long childId) {
+        return monthlyBudgetRepository.findByChild_Id(childId);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildId(Long memberId, Long childId) {
 
         return monthlyBudgetRepository.findByChild_Parent_IdAndChild_Id(memberId, childId);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildIdAndYearMonth(Long memberId, Long childId, YearMonth yearMonth) {
-        return monthlyBudgetRepository.findByChild_Parent_IdAndChild_IdAndMonthYear(memberId, childId, yearMonth);
-    }
+//    @Override
+//    @Transactional(readOnly = true)
+//    public List<MonthlyBudget> findAllMonthlyBudgetByParentAndChildIdAndYearMonth(Long memberId, Long childId, YearMonth yearMonth) {
+//        return monthlyBudgetRepository.findByChild_Parent_IdAndChild_IdAndMonthYear(memberId, childId, yearMonth);
+//    }
 
     @Override
     public List<MonthlyBudget> findAllMonthlyBudget() {
