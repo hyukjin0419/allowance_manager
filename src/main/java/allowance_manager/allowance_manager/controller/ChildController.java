@@ -92,4 +92,32 @@ public class ChildController {
 
         return "redirect:/child/childManager";
     }
+
+    @PostMapping("/child/deleteChild")
+    public String deleteChild(@Valid ChildForm form,BindingResult result) {
+        if (result.hasErrors()) {
+            log.info("child update error");
+            return "/child/childManager";
+        }
+
+        log.info(String.valueOf(form.getId()));
+        log.info(String.valueOf(form.getName()));
+        log.info(String.valueOf(form.getPlannedBudget()));
+
+
+
+        Child child = childService.findChild(form.getId())
+                .orElseThrow(() -> {
+                    log.error("Child not found with ID: {}", form.getId());
+                    return new EntityNotFoundException("자녀를 찾을 수 없습니다");
+                });
+
+
+        childService.withdraw(form.getId());
+
+        log.info("child delete success");
+
+        return "redirect:/child/childManager";
+    }
+
 }
