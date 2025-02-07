@@ -3,7 +3,7 @@ package allowance_manager.allowance_manager.controller;
 import allowance_manager.allowance_manager.Service.interfaces.ChildService;
 import allowance_manager.allowance_manager.Service.interfaces.MonthlyBudgetService;
 import allowance_manager.allowance_manager.controller.form.MonthlyBudgetForm;
-import allowance_manager.allowance_manager.controller.utility.SessionUtil;
+import allowance_manager.allowance_manager.utility.SessionUtil;
 import allowance_manager.allowance_manager.domain.Child;
 import allowance_manager.allowance_manager.domain.MonthlyBudget;
 import jakarta.persistence.EntityNotFoundException;
@@ -71,7 +71,9 @@ public class MonthlyBudgetController {
         List<MonthlyBudget> monthlyBudgets = monthlyBudgetService.findAllMonthlyBudgetByChildId(id);
 
         model.addAttribute("monthlyBudgets", monthlyBudgets);
+        log.info("working fine");
 
         return "monthlyBudget/monthlyBudgetManager";
     }
+
 }

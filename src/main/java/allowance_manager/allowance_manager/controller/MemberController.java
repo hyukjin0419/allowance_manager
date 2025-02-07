@@ -3,8 +3,7 @@ package allowance_manager.allowance_manager.controller;
 import allowance_manager.allowance_manager.Service.interfaces.ChildService;
 import allowance_manager.allowance_manager.Service.interfaces.MemberService;
 import allowance_manager.allowance_manager.controller.form.MemberForm;
-import allowance_manager.allowance_manager.controller.utility.SessionUtil;
-import allowance_manager.allowance_manager.domain.Child;
+import allowance_manager.allowance_manager.utility.SessionUtil;
 import allowance_manager.allowance_manager.domain.Member;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
@@ -14,10 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

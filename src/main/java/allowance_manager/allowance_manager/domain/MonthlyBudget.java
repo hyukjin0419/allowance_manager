@@ -1,5 +1,6 @@
 package allowance_manager.allowance_manager.domain;
 
+import allowance_manager.allowance_manager.utility.YearMonthConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,8 @@ public class MonthlyBudget {
     @JoinColumn(name = "child_id")
     private Child child;
 
+    @Convert(converter = YearMonthConverter.class) // ✅ 변환기 적용
+
     private YearMonth yearMonth;
 
     private Long totalBudget;
@@ -41,5 +44,10 @@ public class MonthlyBudget {
         monthlyBudget.setRemainingBudget(totalBudget);
 
         return monthlyBudget;
+    }
+
+    //==비지니스 로직 메소드==//
+    public void calculateRemainingBudget(Long totalBudget, Long spentBudget) {
+        this.remainingBudget = totalBudget - spentBudget;
     }
 }

@@ -2,7 +2,7 @@ package allowance_manager.allowance_manager.controller;
 
 import allowance_manager.allowance_manager.Service.interfaces.ChildService;
 import allowance_manager.allowance_manager.controller.form.ChildForm;
-import allowance_manager.allowance_manager.controller.utility.SessionUtil;
+import allowance_manager.allowance_manager.utility.SessionUtil;
 import allowance_manager.allowance_manager.domain.Child;
 import allowance_manager.allowance_manager.domain.Member;
 import jakarta.persistence.EntityNotFoundException;

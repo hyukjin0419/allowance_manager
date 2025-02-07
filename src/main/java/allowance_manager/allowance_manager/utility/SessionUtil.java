@@ -1,4 +1,4 @@
-package allowance_manager.allowance_manager.controller.utility;
+package allowance_manager.allowance_manager.utility;
 
 import allowance_manager.allowance_manager.Service.interfaces.ChildService;
 import allowance_manager.allowance_manager.Service.interfaces.MemberService;
