@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface MonthlyBudgetService {
     public Long add(MonthlyBudget monthlyBudget);
     public void delete(Long monthlyBudgetId);
+    public void update(Long monthlyBudgetId, YearMonth yearMonth, Long totalBudget);
     public void updateChild(Long monthlyBudgetId,Long childId);
     public void updateMonthYear(Long monthlyBudgetId, YearMonth yearMonth);
     public void updateTotalBudget(Long monthlyBudgetId, Long totalBudget);

@@ -36,6 +36,15 @@ public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
     }
 
     @Override
+    public void update(Long monthlyBudgetId, YearMonth yearMonth, Long totalBudget) {
+        MonthlyBudget monthlyBudget = monthlyBudgetRepository.findById(monthlyBudgetId)
+                .orElseThrow(() -> new EntityNotFoundException("monthlyBudget is not found"));
+
+        monthlyBudget.setYearMonth(yearMonth);
+        monthlyBudget.setTotalBudget(totalBudget);
+    }
+
+    @Override
     public void updateChild(Long monthlyBudgetId, Long childId) {
         MonthlyBudget monthlyBudget = monthlyBudgetRepository.findById(monthlyBudgetId)
                 .orElseThrow(() -> new EntityNotFoundException("Monthly Budget Not Found"));
@@ -93,6 +102,6 @@ public class MonthlyBudgetServiceImpl implements MonthlyBudgetService {
 
     @Override
     public Optional<MonthlyBudget> findOneMonthlyBudget(Long monthlyBudgetId) {
-        return Optional.empty();
+        return monthlyBudgetRepository.findById(monthlyBudgetId);
     }
 }

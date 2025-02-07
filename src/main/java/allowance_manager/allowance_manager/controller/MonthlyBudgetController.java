@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -52,7 +53,6 @@ public class MonthlyBudgetController {
             log.error("monthlyBudget register error");
             return "redirect:/child/childManager";
         }
-        log.info("monthlyBudget register success");
 
         Child child = childService.findChild(form.getChildId())
                 .orElseThrow(() -> new EntityNotFoundException("child not found"));
@@ -71,9 +71,44 @@ public class MonthlyBudgetController {
         List<MonthlyBudget> monthlyBudgets = monthlyBudgetService.findAllMonthlyBudgetByChildId(id);
 
         model.addAttribute("monthlyBudgets", monthlyBudgets);
-        log.info("working fine");
 
         return "monthlyBudget/monthlyBudgetManager";
     }
 
+    @GetMapping("/monthlyBudget/monthlyBudgetEditor/{id}")
+    public String showMonthlyBudgetEditor(@PathVariable Long id, Model model) {
+        log.info("Id: " + id);
+        MonthlyBudget monthlyBudget = monthlyBudgetService.findOneMonthlyBudget(id)
+                .orElseThrow(() -> new EntityNotFoundException("Monthly Budget Not Found"));
+
+        model.addAttribute("monthlyBudget", monthlyBudget);
+
+        return "/monthlyBudget/monthlyBudgetEditor";
+    }
+
+    @PostMapping("/monthlyBudget/monthlyBudgetEditor/")
+    public String updateMonthlyBudgetForm(@Valid MonthlyBudgetForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            log.error("monthlyBudget update error");
+            return "redirect:monthlyBudget/navigateToMonthlyBudget/" + form.getChildId();
+        }
+        log.info("monthlyBudget edit success");
+
+        monthlyBudgetService.update(form.getId(), form.getYearMonth(), form.getTotalBudget());
+
+        return "redirect:/navigateToMonthlyBudget/" + form.getChildId();
+    }
+
+    @PostMapping("/monthlyBudget/delete")
+    public String deleteMonthlyBudget(@Valid MonthlyBudgetForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            log.error("monthlyBudget delete error");
+            return "redirect:monthlyBudget/navigateToMonthlyBudget/" + form.getChildId();
+        }
+        log.info("monthlyBudget delete success");
+
+        monthlyBudgetService.delete(form.getId());
+
+        return "redirect:/navigateToMonthlyBudget/" + form.getChildId();
+    }
 }

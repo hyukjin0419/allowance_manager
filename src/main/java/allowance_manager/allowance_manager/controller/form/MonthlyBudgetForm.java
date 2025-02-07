@@ -8,6 +8,8 @@ import java.time.YearMonth;
 
 @Getter @Setter
 public class MonthlyBudgetForm {
+    private Long id;
+
     private Long childId;
 
     private YearMonth yearMonth;
