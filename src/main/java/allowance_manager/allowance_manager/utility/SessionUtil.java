@@ -1,8 +1,10 @@
 package allowance_manager.allowance_manager.utility;
 
+import allowance_manager.allowance_manager.Service.interfaces.BudgetService;
 import allowance_manager.allowance_manager.Service.interfaces.ChildService;
 import allowance_manager.allowance_manager.Service.interfaces.MemberService;
 import allowance_manager.allowance_manager.Service.interfaces.MonthlyBudgetService;
+import allowance_manager.allowance_manager.domain.Budget;
 import allowance_manager.allowance_manager.domain.Child;
 import allowance_manager.allowance_manager.domain.MonthlyBudget;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ public class SessionUtil {
     private final MemberService memberService;
     private final ChildService childService;
     private final MonthlyBudgetService monthlyBudgetService;
+    private final BudgetService budgetService;
 
     public String isChildExist(Long memberId) {
         // 자식 정보 가져오기
@@ -35,6 +38,14 @@ public class SessionUtil {
         List<MonthlyBudget> monthlyBudgets = monthlyBudgetService.findAllMonthlyBudgetByChildId(childId);
 
         if (monthlyBudgets.isEmpty()) return false;
+        return true;
+    }
+
+    public boolean isBudgetExist(Long monthlyBudgetId) {
+
+        List<Budget> budgets = budgetService.getBudgetsByMonthlyBudgetId(monthlyBudgetId);
+
+        if (budgets.isEmpty()) return false;
         return true;
     }
 }

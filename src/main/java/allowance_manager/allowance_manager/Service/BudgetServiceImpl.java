@@ -89,6 +89,11 @@ public class BudgetServiceImpl implements BudgetService {
     }
 
     @Override
+    public List<Budget> getBudgetsByMonthlyBudgetId(Long monthlyBudgetId) {
+        return budgetRepository.findByMonthlyBudget_Id(monthlyBudgetId);
+    }
+
+    @Override
     public List<Budget> getBudgetsByMemberChildAndMonthlyBudget(Long memberId, Long childId, Long monthlyBudgetId) {
         return budgetRepository.findByMonthlyBudget_Child_Parent_IdAndMonthlyBudget_Child_IdAndMonthlyBudget_Id(memberId, childId, monthlyBudgetId);
     }

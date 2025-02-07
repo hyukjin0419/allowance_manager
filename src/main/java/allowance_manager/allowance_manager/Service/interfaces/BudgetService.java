@@ -31,6 +31,8 @@ public interface BudgetService {
 
     public List<Budget> getBudgetsByMemberAndChild(Long memberId, Long childId);
 
+    public List<Budget> getBudgetsByMonthlyBudgetId(Long monthlyBudgetId);
+
     public List<Budget> getBudgetsByMemberChildAndMonthlyBudget(Long memberId, Long childId, Long monthlyBudgetId);
 
     public List<Budget> getBudgetsByMemberChildAndCategory(Long memberId, Long childId, Long categoryId);

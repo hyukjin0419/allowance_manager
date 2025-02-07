@@ -20,16 +20,17 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/child")
 public class ChildController {
     private final SessionUtil sessionUtil;
     private final ChildService childService;
 
-    @GetMapping("/child/createChildForm")
+    @GetMapping("/createChildForm")
     public String createForm() {
         return "/child/createChildForm";
     }
 
-    @PostMapping("child/createChildForm")
+    @PostMapping("/createChildForm")
     public String registerChild(@Valid ChildForm form, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
             log.info("child register error");
@@ -45,7 +46,7 @@ public class ChildController {
         return sessionUtil.isChildExist(parent.getId());
     }
 
-    @GetMapping("child/childManager")
+    @GetMapping("childManager")
     public String showChildren(Model model, HttpSession session) {
         Member parent = (Member) session.getAttribute("member");
         List<Child> children = childService.findChildrenByParentId(parent.getId());
@@ -56,7 +57,7 @@ public class ChildController {
     }
 
 
-    @GetMapping("/child/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String updateChildForm(@PathVariable Long id, Model model) {
         Child child = childService.findChild(id)
                 .orElseThrow(() -> new EntityNotFoundException("Child not found"));
@@ -66,7 +67,7 @@ public class ChildController {
         return "child/updateChildForm";
     }
 
-    @PostMapping("/child/updateChildForm")
+    @PostMapping("/updateChildForm")
     public String updateChild(@Valid ChildForm form,BindingResult result) {
         if (result.hasErrors()) {
             log.info("child update error");
@@ -85,7 +86,7 @@ public class ChildController {
         return "redirect:/child/childManager";
     }
 
-    @PostMapping("/child/deleteChild")
+    @PostMapping("/deleteChild")
     public String deleteChild(@Valid ChildForm form,BindingResult result) {
         if (result.hasErrors()) {
             log.info("child update error");

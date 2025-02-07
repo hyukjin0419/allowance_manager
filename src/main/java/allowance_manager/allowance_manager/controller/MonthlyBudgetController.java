@@ -65,9 +65,6 @@ public class MonthlyBudgetController {
 
     @GetMapping("/monthlyBudget/monthlyBudgetManager/{id}")
     public String showMonthlyBudget(@PathVariable Long id, Model model) {
-        Child child = childService.findChild(id)
-                .orElseThrow(() -> new EntityNotFoundException("Child not found"));
-
         List<MonthlyBudget> monthlyBudgets = monthlyBudgetService.findAllMonthlyBudgetByChildId(id);
 
         model.addAttribute("monthlyBudgets", monthlyBudgets);
